@@ -1,0 +1,116 @@
+@prefix metrics: <http://dynamicdashboard.ilabt.imec.be/broker/ontologies/metrics#> .
+@prefix dashb: <http://dynamicdashboard.ilabt.imec.be/broker/ontologies/dashboard#> .
+@prefix om: <http://www.ontology-of-units-of-measure.org/resource/om-2/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# --- Metrics (default definitions of well-known metrics to be reused) ---
+metrics:celsiusTemperature a dashb:Metric;
+    a om:Temperature;
+    om:hasUnit om:degreeCelsius;
+    dashb:category dashb:1D ;
+    dashb:datatype xsd:double .
+
+metrics:relativeHumidity a dashb:Metric;
+    a om:RelativeHumidity;
+    om:hasUnit om:percent ;
+    dashb:category dashb:1D ;
+    dashb:datatype xsd:double .
+
+metrics:absoluteHumidity a dashb:Metric;
+    a om:RelativeHumidity;
+    om:hasUnit om:percent ;
+    dashb:category dashb:1D ;
+    dashb:datatype xsd:double .
+
+metrics:airParticlesPpmConcentration a dashb:Metric;
+    om:hasUnit dashb:partsPerMillion;
+    dashb:category dashb:1D ;
+    dashb:datatype xsd:double .
+
+metrics:metricSpeed a dashb:Metric ;
+    a om:Speed;
+    om:hasUnit om:metrePerSecond-Time ;
+    dashb:datatype xsd:double .
+
+metrics:acceleration a dashb:Metric ;
+    a om:Acceleration;
+    dashb:category dashb:1D ;
+    dashb:datatype xsd:double .
+
+# No time to investigate now why subclassing the metric results in no suggested visualizations with the reasoning: (TODO fixed on the entire acceleration metrics hierarchy.)
+# metrics:linearAcceleration rdfs:subClassOf metrics:acceleration ;
+#     om:hasUnit om:metrePerSecond-TimeSquared .
+
+metrics:linearAcceleration a dashb:Metric ;
+    a om:Acceleration;
+    om:hasUnit om:metrePerSecond-TimeSquared ;
+    dashb:category dashb:1D ;
+    dashb:datatype xsd:double .
+
+metrics:linearAccelerationX a dashb:Metric;
+    a om:Acceleration;
+    om:hasUnit om:metrePerSecond-TimeSquared ;
+    dashb:category dashb:1D ;
+    dashb:datatype xsd:double .
+
+metrics:linearAccelerationY a dashb:Metric ;
+    a om:Acceleration ;
+    om:hasUnit om:metrePerSecond-TimeSquared ;
+    dashb:category dashb:1D ;
+    dashb:datatype xsd:double .
+
+metrics:linearAccelerationZ a dashb:Metric ;
+    a om:Acceleration ;
+    om:hasUnit om:metrePerSecond-TimeSquared ;
+    dashb:category dashb:1D ;
+    dashb:datatype xsd:double .
+
+metrics:angularAcceleration a dashb:Metric ;
+    a om:Acceleration ;
+    om:hasUnit om:metrePerSecond-TimeSquared ;
+    dashb:category dashb:1D ;
+    dashb:datatype xsd:double .
+
+metrics:yaw a dashb:Metric ;
+    a om:Acceleration ;
+    om:hasUnit om:metrePerSecond-TimeSquared ;
+    dashb:category dashb:1D ;
+    dashb:datatype xsd:double .
+
+metrics:pitch a dashb:Metric ;
+    a om:Acceleration ;
+    om:hasUnit om:metrePerSecond-TimeSquared ;
+    dashb:category dashb:1D ;
+    dashb:datatype xsd:double .
+
+metrics:roll a dashb:Metric ;
+    a om:Acceleration ;
+    om:hasUnit om:metrePerSecond-TimeSquared ;
+    dashb:category dashb:1D ;
+    dashb:datatype xsd:double .
+
+metrics:degreesAngle a dashb:Metric ;
+    a om:Angle ;
+    om:hasUnit om:degree ;
+    dashb:datatype xsd:double .
+
+metrics:cubicAirFlow a dashb:Metric ;
+    a om:VolumetricFlowRate ;
+    om:hasUnit om:cubicMetrePerSecond-Time ;
+    dashb:datatype xsd:double .
+
+# generic metric if actual unit is unknown
+metrics:quantity a dashb:Metric ;
+    a om:Quantity ;
+    dashb:datatype xsd:double .
+
+metrics:latitude a dashb:Metric ;
+    a om:EclipticLatitude ;
+    dashb:category dashb:1D ;
+    dashb:datatype xsd:double .
+
+metrics:longitude a dashb:Metric ;
+    a om:EclipticLongitude ;
+    dashb:category dashb:1D ;
+    dashb:datatype xsd:double .

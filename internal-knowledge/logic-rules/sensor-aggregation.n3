@@ -1,0 +1,73 @@
+@prefix dashb: <http://dynamicdashboard.ilabt.imec.be/broker/ontologies/dashboard#> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix e: <http://eulersharp.sourceforge.net/2003/03swap/log-rules#>.
+
+# A concatenation produces a list of metrics instead of one metric; the list of metrics is the concatenation of the metrics produced by the given sources:
+
+{
+    ?x a dashb:ProcessedObservableProperty;
+        dashb:processor dashb:concatAggregator .
+    [] e:findall ( ?source { ?x dashb:source ?source } ?sources) .
+
+    ?sources rdf:first ?source1.
+    ?sources rdf:rest ?rest.
+    ?rest rdf:first ?source2.
+
+    ?source1 dashb:produces ?prod1.
+    ?source2 dashb:produces ?prod2.
+}
+=>
+{
+    ?x dashb:produces (?prod1 ?prod2).
+}.
+
+# assuming here that all sources for an aggregator have the same unit
+{
+    ?op dashb:produces ?prod.
+
+    ?x a dashb:ProcessedObservableProperty;
+        dashb:source ?op;
+        dashb:processor ?proc.
+
+    ?proc ?p dashb:Input.
+} => {
+    ?x ?p ?prod.
+}.
+
+# in case an aggregate has a fixed produce/dimension
+{
+    ?x a dashb:ProcessedObservableProperty;
+        dashb:processor ?proc.
+
+    ?proc dashb:produces ?prod.
+
+    ?prod log:notEqualTo dashb:Input.
+} => {
+    ?x dashb:produces ?prod.
+}.
+{
+    ?x a dashb:ProcessedObservableProperty;
+        dashb:processor ?proc.
+
+    ?proc dashb:dimension ?prod.
+
+    ?prod log:notEqualTo dashb:Input.
+} => {
+    ?x dashb:dimension ?prod.
+}.
+
+# dimensions for multi/bucket aggregates
+{
+    ?x a dashb:ProcessedObservableProperty;
+        dashb:bucket ?bucket.
+} => {
+    ?x dashb:dimension time:GeneralDurationDescription.
+}.
+{
+    ?x a dashb:ProcessedObservableProperty.
+    [] e:findall ( ?bucket { ?x dashb:bucket ?bucket } ()) .
+} => {
+    ?x dashb:dimension dashb:Input.
+}.

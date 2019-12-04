@@ -1,0 +1,168 @@
+@prefix dashb: <http://dynamicdashboard.ilabt.imec.be/broker/ontologies/dashboard#> .
+@prefix e: <http://eulersharp.sourceforge.net/2003/03swap/log-rules#>.
+@prefix math: <http://www.w3.org/2000/10/swap/math#>.
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix list: <http://www.w3.org/2000/10/swap/list#>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+# Visualizations can have as window either an instant (if they can visualize realtime data) or a time interval (if they can visualize historical data):
+
+{
+    ?widget dashb:timeWindow ?window.
+    ?window a time:Instant.
+
+    ?visualization a dashb:Visualization. # TODO debug: cannot be changed into the expected dashb:RealtimeDataVisualization, crashes the "prop(s) => hour average aggregation => day range line chart" unit tests (in Renson unit tests).
+}
+=>
+{
+    ?visualization dashb:window ?window.
+}.
+
+{
+    ?widget dashb:timeWindow ?window.
+    ?window a time:Interval.
+
+    ?visualization a dashb:HistoricalDataVisualization.
+}
+=>
+{
+    ?visualization dashb:window ?window.
+}.
+
+# Visualizations consist of components (e.g. a wind rose has a "wind direction" and "wind speed" component).
+# Find out what sensor properties are supported by the components of given visualizations:
+# Basis of the argumentation: a visualization component supports a data source if the component accepts the data type or "bucket size" that a data source produces.
+
+# Note: you CAN change the order of the rules, that doesn't matter to the reasoner, it just keeps executing all logic until nothing new can be derived.
+# Note: you should be CAUTIOUS to change backwards chaining (<=) into forwards chaining (=>), the reasoner executes these two kinds of rules differently.
+
+{
+    ?component dashb:supports ?dataSource.
+}
+<=
+{
+    ?visualization a dashb:Visualization;
+        dashb:component ?component.
+    ?component dashb:accepts dashb:All.     # Question: dashb:All isn't defined /used anywhere. Is there even any visualization that can visualize whatever metric and datatype? There is: the colored "measurement": this should be able to print qualitative properties/strings too, and we should refactor it to support colors for those too (not thresholding in this case but equality matching).
+
+    ?dataSource dashb:produces ?prod.
+}.
+
+{
+    ?component dashb:supports ?dataSource.
+}
+<=
+{
+    ?visualization a dashb:Visualization;
+        dashb:component ?component.
+    ?component dashb:accepts [ ?p ?val ].
+
+    ?dataSource dashb:produces [ ?p ?val ].
+}.
+
+# Similar reasoning, but for when a visualization accepts multiple data sources on its components:
+
+{
+    ?component dashb:partialSupport (?dataSource ?rest ?dataSourceRest).
+}
+<=
+{
+    ?visualization a dashb:Visualization;
+        dashb:component ?component.
+    ?component dashb:accepts ?list.
+
+    ?list rdf:first [ ?p ?val ].
+    ?dataSource dashb:produces ?dataSourceList.
+    ?dataSourceList rdf:first [ ?p ?val ].
+
+    ?list rdf:rest ?rest.
+    ?dataSourceList rdf:rest ?dataSourceRest.
+}.
+
+{
+    ?component dashb:partialSupport (?dataSource () ()).
+}
+=>
+{
+    ?component dashb:supports ?dataSource.
+}.
+
+{
+    ?component dashb:partialSupport (?dataSource ?list ?dataSourceList).
+
+    ?list rdf:first [ ?p ?val ].
+    ?dataSourceList rdf:first [ ?p ?val ].
+
+    ?list rdf:rest ?rest.
+    ?dataSourceList rdf:rest ?dataSourceRest.
+}
+=>
+{
+    ?component dashb:partialSupport (?dataSource ?rest ?dataSourceRest).
+}.
+
+# For historical visualizations, check if the bucket size of the data source matches with what the visualization component accepts.
+
+{
+    ?component dashb:supports ?dataSource.
+}
+<=
+{
+    ?visualization a dashb:Visualization;
+        dashb:component ?component.
+    ?component dashb:accepts [ dashb:bucket ?unit ].
+
+    ?dataSource dashb:bucket ?unit.
+}.
+
+# If a visualization can process a window
+# and its components support a number of data sources (e.g. sensor properties) < a configured maximum and >= a configured minimum,
+# then the component can visualize the data source:
+
+{
+    ?widget dashb:dataSource ?dataSource.
+
+    ?visualization a dashb:Visualization;
+        dashb:component ?component;
+        dashb:window ?window.
+
+    ?component dashb:supports ?dataSource;
+        dashb:max ?max.
+
+    # Verify that the number of ?dataSource supported by ?component does indeed not exceed ?max:
+    [] e:findall ( ?s { ?component dashb:source ?s } ?dataSources) .
+    ?dataSources math:memberCount ?length.
+    ?length math:lessThan ?max.     # Question: how is it possible that this works for the visualization components that have dashb:min 1 and dashb:max 1? Does math:lessThan actually mean less than or equal ? Can't find this in https://www.w3.org/2000/10/swap/doc/CwmBuiltins.html.
+}
+=>
+{
+    ?component dashb:source ?dataSource.
+}.
+
+{
+    ?visualization dashb:source ?dataSource.
+}
+<=
+{
+    ?visualization a dashb:Visualization;
+        dashb:component ?component.
+    ?component dashb:source ?dataSource;
+        dashb:min ?min.
+
+    [] e:findall ( ?s { ?component dashb:source ?s } ?dataSources) .
+    ?dataSources math:memberCount ?length.
+    ?length math:notLessThan ?min.
+}.
+
+# Question: the above 2 rules cannot be reduced to just one (checking both boundaries (< max and >= min) at once, and then immediately spitting out ?visualization dashb:source ?dataSource). I don't understand why.
+
+{
+    ?widget dashb:dataSource ?dataSource ;
+        dashb:timeWindow ?window .
+    ?visualization a dashb:Visualization ;
+        dashb:source ?dataSource .
+}
+=>
+{
+    ?widget dashb:candidateVisualization ?visualization .
+}.

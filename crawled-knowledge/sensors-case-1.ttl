@@ -1,0 +1,22 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix metrics: <http://dynamicdashboard.ilabt.imec.be/broker/ontologies/metrics#> .
+@prefix renson: <http://IBCNServices.github.io/dyversify/Renson#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix ssn: <http://www.w3.org/ns/ssn/> .
+@prefix dashb: <http://dynamicdashboard.ilabt.imec.be/broker/ontologies/dashboard#> .
+
+<http://dyversify-stack.idlab.be/scopes/icon.dyversify.renson/things/HEALTHBOX3.171030SD0005/sensors/sensor_5> a renson:IndoorTemperatureSensor ;
+      rdfs:label "Healthbox 171030SD0005, room 2: indoor temperature" ;
+      sosa:observes <http://dyversify-stack.idlab.be/scopes/icon.dyversify.renson/things/HEALTHBOX3.171030SD0005.2/metrics/sensor.indoor.temperature.temperature%3A%3Anumber> .
+<http://dyversify-stack.idlab.be/scopes/icon.dyversify.renson/things/HEALTHBOX3.171030SD0005.2/metrics/sensor.indoor.temperature.temperature%3A%3Anumber> a renson:Temperature ;
+      rdfs:label "Indoor temperature (Healthbox 171030SD0005, room 2)" ;
+      dashb:produces metrics:celsiusTemperature .
+<http://dyversify-stack.idlab.be/scopes/icon.dyversify.renson/things/HEALTHBOX3.171030SD0005.2> ssn:hasSubSystem <http://dyversify-stack.idlab.be/scopes/icon.dyversify.renson/things/HEALTHBOX3.171030SD0005/sensors/sensor_5> .
+
+<http://dyversify-stack.idlab.be/scopes/icon.dyversify.renson/things/HEALTHBOX3.171030SD0005/sensors/sensor_12> a renson:IndoorTemperatureSensor ;
+      rdfs:label "Healthbox 171030SD0005, room 4: indoor temperature" ;
+      sosa:observes <http://dyversify-stack.idlab.be/scopes/icon.dyversify.renson/things/HEALTHBOX3.171030SD0005.4/metrics/sensor.indoor.temperature.temperature%3A%3Anumber> .
+<http://dyversify-stack.idlab.be/scopes/icon.dyversify.renson/things/HEALTHBOX3.171030SD0005.4/metrics/sensor.indoor.temperature.temperature%3A%3Anumber> a renson:Temperature ;
+      rdfs:label "Indoor temperature (Healthbox 171030SD0005, room 4)" ;
+      dashb:produces metrics:celsiusTemperature .
+<http://dyversify-stack.idlab.be/scopes/icon.dyversify.renson/things/HEALTHBOX3.171030SD0005.4> ssn:hasSubSystem <http://dyversify-stack.idlab.be/scopes/icon.dyversify.renson/things/HEALTHBOX3.171030SD0005/sensors/sensor_12> .

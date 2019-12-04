@@ -1,0 +1,135 @@
+@prefix dashb: <http://dynamicdashboard.ilabt.imec.be/broker/ontologies/dashboard#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix om: <http://www.ontology-of-units-of-measure.org/resource/om-2/> .
+
+dashb:RealtimeDataVisualization rdfs:subClassOf dashb:Visualization .
+
+<http://localhost/sensor-gateway/things/visualizations/colored-measurement> a dashb:RealtimeDataVisualization ;
+    rdfs:label "Textual display of observation (colored if thresholds are set)"@en ;
+    dashb:implementation <http://localhost/sensor-gateway/static/visualization_serving/colored_measurement.js> ;
+    dashb:component [
+        dashb:accepts [ dashb:datatype xsd:double ];
+        dashb:min 1;
+        dashb:max 1
+    ] .
+
+<http://localhost/sensor-gateway/things/visualizations/column-chart> a dashb:RealtimeDataVisualization ;
+    rdfs:label "Column chart"@en ;
+    dashb:implementation <http://localhost/sensor-gateway/static/visualization_serving/column_chart.js> ;
+    dashb:component [
+        dashb:accepts [ dashb:datatype xsd:double ];
+        dashb:min 1;
+        dashb:max 10
+    ] .
+
+<http://localhost/sensor-gateway/things/visualizations/marker-map> a dashb:RealtimeDataVisualization ;
+    rdfs:label "Map (displaying locations)"@en ;
+    dashb:implementation <http://localhost/sensor-gateway/static/visualization_serving/marker_map.js> ;
+    dashb:component [
+        dashb:accepts ([ a om:EclipticLatitude ] [ a om:EclipticLongitude ]);
+        dashb:min 1;
+        dashb:max 1
+    ] .
+
+<http://localhost/sensor-gateway/things/visualizations/route-map> a dashb:RealtimeDataVisualization ;
+    rdfs:label "Map (displaying routes)"@en ;
+    dashb:implementation <http://localhost/sensor-gateway/static/visualization_serving/route_map.js> ;
+    dashb:component [
+        dashb:accepts ([ a om:EclipticLatitude ] [ a om:EclipticLongitude ]);
+        dashb:min 1;
+        dashb:max 1
+    ] .
+
+<http://localhost/sensor-gateway/things/visualizations/modern-gauge> a dashb:RealtimeDataVisualization ;
+    rdfs:label "Gauge (modern style)"@en ;
+    dashb:implementation <http://localhost/sensor-gateway/static/visualization_serving/modern_gauge.js> ;
+    dashb:component [
+        dashb:accepts [ dashb:datatype xsd:double ];
+        dashb:min 1;
+        dashb:max 1
+    ] .
+
+<http://localhost/sensor-gateway/things/visualizations/traditional-gauge> a dashb:RealtimeDataVisualization ;
+    rdfs:label "Gauge (traditional style)"@en ;
+    dashb:implementation <http://localhost/sensor-gateway/static/visualization_serving/traditional_gauge.js> ;
+    dashb:component [
+        dashb:accepts [ dashb:datatype xsd:double ];
+        dashb:min 1;
+        dashb:max 1
+    ] .
+
+<http://localhost/sensor-gateway/things/visualizations/time-series-line-chart-with-time-range-selector> a dashb:RealtimeDataVisualization ;
+    rdfs:label "Line chart (updating at observation frequency)"@en ;
+    dashb:implementation <http://localhost/sensor-gateway/static/visualization_serving/time_series_line_chart_with_time_range_selector.js> ;
+    dashb:component [
+        dashb:accepts [ dashb:datatype xsd:double ];
+        dashb:min 1;
+        dashb:max 1
+    ] .
+
+<http://localhost/sensor-gateway/things/visualizations/multiple-time-series-line-chart-with-time-range-selector> a dashb:RealtimeDataVisualization ;
+    rdfs:label "Line chart (updating at observation frequency)"@en ;
+    dashb:implementation <http://localhost/sensor-gateway/static/visualization_serving/multiple_time_series_line_chart_with_time_range_selector.js> ;
+    dashb:component [
+        dashb:accepts [ dashb:datatype xsd:double ];
+        dashb:min 2;
+        dashb:max 10
+    ] .
+
+<http://localhost/sensor-gateway/things/visualizations/measurement-smiley> a dashb:RealtimeDataVisualization ;
+    rdfs:label "Smiley (emotion according to configured thresholds)"@en ;
+    dashb:implementation <http://localhost/sensor-gateway/static/visualization_serving/measurement_smiley.js> ;
+    dashb:component [
+        dashb:accepts [ dashb:datatype xsd:double ];
+        dashb:min 1;
+        dashb:max 1
+    ] .
+
+dashb:HistoricalDataVisualization rdfs:subClassOf dashb:Visualization .
+
+<http://localhost/sensor-gateway/things/visualizations/time-series-line-chart-with-time-range-selector> a dashb:HistoricalDataVisualization ;
+    rdfs:label "Line chart (updating at observation frequency)"@en ;
+    dashb:implementation <http://localhost/sensor-gateway/static/visualization_serving/time_series_line_chart_with_time_range_selector.js> ;
+    dashb:component [
+        dashb:accepts [ dashb:datatype xsd:double ];    # Question: dashb:category is not used? Every metric has it described... However: its value is ALWAYS dashb:1D. Can we then leave this out? We nowhere have a dashb:2D, dashb:3D or whatever other dimensionality.
+        dashb:min 1;
+        dashb:max 1
+    ] .
+
+<http://localhost/sensor-gateway/things/visualizations/day-range-line-chart> a dashb:HistoricalDataVisualization ;
+    rdfs:label "Line chart (hourly observations)"@en ;
+    dashb:implementation <static/visualization_serving/day_range_line_chart.js> ;
+    dashb:component [
+        dashb:accepts [ dashb:bucket time:unitHour ];
+        dashb:min 1;
+        dashb:max 10
+    ] .
+
+<http://localhost/sensor-gateway/things/visualizations/sensor-measurements-per-hour-table> a dashb:HistoricalDataVisualization ;
+    rdfs:label "Table (sensor measurements per hour)"@en ;
+    dashb:implementation <static/visualization_serving/multiple_sensor_table.js> ;
+    dashb:component [
+        dashb:accepts [ dashb:bucket time:unitHour ];
+        dashb:min 1;
+        dashb:max 10
+    ] .
+
+<http://localhost/sensor-gateway/things/visualizations/marker-map> a dashb:HistoricalDataVisualization ;
+    rdfs:label "Map (displaying locations)"@en ;
+    dashb:implementation <http://localhost/sensor-gateway/static/visualization_serving/marker_map.js> ;
+    dashb:component [
+        dashb:accepts ([ a om:EclipticLatitude ] [ a om:EclipticLongitude ]);
+        dashb:min 1;
+        dashb:max 1
+    ] .
+
+<http://localhost/sensor-gateway/things/visualizations/route-map> a dashb:HistoricalDataVisualization ;
+    rdfs:label "Map (displaying routes)"@en ;
+    dashb:implementation <http://localhost/sensor-gateway/static/visualization_serving/route_map.js> ;
+    dashb:component [
+        dashb:accepts ([ a om:EclipticLatitude ] [ a om:EclipticLongitude ]);
+        dashb:min 1;
+        dashb:max 1
+    ] .

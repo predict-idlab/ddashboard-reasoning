@@ -1,0 +1,27 @@
+@prefix dashb: <http://dynamicdashboard.ilabt.imec.be/broker/ontologies/dashboard#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix om: <http://www.ontology-of-units-of-measure.org/resource/om-2/> .
+
+dashb:Aggregator rdfs:subClassOf dashb:Processor .
+
+dashb:avgAggregator a dashb:AggregatedObservableProperty ;
+    rdfs:label "Average: multisensor"@en ;
+    rdfs:label "Average: bucket (minute)"@en ;
+    rdfs:label "Average: bucket (hour)"@en ;
+    dashb:accepts [ dashb:datatype xsd:double ] ;
+    dashb:produces dashb:Input ;
+    dashb:operation dashb:Avg .
+
+dashb:frequencyAggregator a dashb:AggregatedObservableProperty ;
+    rdfs:label "Frequency"@en;
+    dashb:accepts [ dashb:datatype xsd:double ] ;
+    dashb:produces [ a om:Frequency ] ;
+    dashb:operation dashb:Frequency .
+
+dashb:concatAggregator a dashb:AggregatedObservableProperty ;
+    rdfs:label "Concatenation"@en ;
+    dashb:accepts dashb:All ;
+    dashb:operation dashb:Concat .

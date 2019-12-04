@@ -1,0 +1,13 @@
+@prefix dashb: <http://dynamicdashboard.ilabt.imec.be/broker/ontologies/dashboard#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+{
+   ?widget dashb:candidateVisualization ?visualization .
+   ?visualization dashb:source <http://dyversify-stack.idlab.be/scopes/icon.dyversify.renson/things/HEALTHBOX3.171030SD0005.2/metrics/sensor.indoor.temperature.temperature%3A%3Anumber> , 
+							   <http://dyversify-stack.idlab.be/scopes/icon.dyversify.renson/things/HEALTHBOX3.171030SD0005.4/metrics/sensor.indoor.temperature.temperature%3A%3Anumber> ;
+				  rdfs:label ?label .
+}
+=>
+{
+   ?visualization rdfs:label ?label .
+} .

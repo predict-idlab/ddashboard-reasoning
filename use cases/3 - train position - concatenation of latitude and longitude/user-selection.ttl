@@ -1,0 +1,15 @@
+@prefix dashb: <http://dynamicdashboard.ilabt.imec.be/broker/ontologies/dashboard#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://dyversify.ilabt.imec.be/dynamic-dashboard/resultTime/1575470449793/propertyUrl/concatenation/observation#AggregateConcatenation> a dashb:AggregatedObservableProperty ;
+    dashb:processor dashb:concatAggregator ;
+    dashb:source <http://dyversify-stack.idlab.be/scopes/icon.dyversify.televic/things/cosamira.module0/metrics/gnss_lat%3A%3Anumber>,
+        <http://dyversify-stack.idlab.be/scopes/icon.dyversify.televic/things/cosamira.module0/metrics/gnss_lon%3A%3Anumber> .
+
+[] dashb:dataSource <https://dyversify.ilabt.imec.be/dynamic-dashboard/resultTime/1575470449793/propertyUrl/concatenation/observation#AggregateConcatenation> ;
+    dashb:timeWindow [ a time:Instant ;
+            dashb:covers <https://dyversify.ilabt.imec.be/dynamic-dashboard/resultTime/1575470449793/propertyUrl/concatenation/observation#AggregateConcatenation> ] .

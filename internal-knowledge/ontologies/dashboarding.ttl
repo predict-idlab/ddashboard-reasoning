@@ -1,0 +1,16 @@
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix dashb: <http://dynamicdashboard.ilabt.imec.be/broker/ontologies/dashboard#> .
+
+dashb:ProcessedObservableProperty rdfs:subClassOf sosa:ObservableProperty .
+dashb:AggregatedObservableProperty rdfs:subClassOf dashb:ProcessedObservableProperty .
+dashb:ConvertedObservableProperty rdfs:subClassOf dashb:ProcessedObservableProperty .
+
+dashb:Processor a rdfs:Class.
+dashb:Convertor rdfs:subClassOf dashb:Processor.
+dashb:Aggregator rdfs:subClassOf dashb:Processor.
+
+dashb:origin a owl:TransitiveProperty;
+    rdfs:domain dashb:ProcessedObservableProperty ;
+    rdfs:range dashb:ProcessedObservableProperty .
