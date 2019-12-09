@@ -5,31 +5,33 @@
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
 @prefix om: <http://www.ontology-of-units-of-measure.org/resource/om-2/> .
 
-dashb:avgAggregator a dashb:AggregatedObservableProperty ;
+@base <http://localhost/web-thing-gateway/things/> .
+
+<avgAggregator> a dashb:AggregatedObservableProperty ;
     rdfs:label "Average: multisensor"@en ;
     dashb:accepts [ dashb:datatype xsd:double ] ;
     dashb:produces dashb:Input ;
     dashb:operation dashb:Avg .
 	
-dashb:avgAggregator a dashb:AggregatedObservableProperty ;
+<avgAggregator> a dashb:AggregatedObservableProperty ;
     rdfs:label "Average: bucket (minute)"@en ;
     dashb:accepts [ dashb:datatype xsd:double ] ;
     dashb:produces dashb:Input ;
     dashb:operation dashb:Avg .
 	
-dashb:avgAggregator a dashb:AggregatedObservableProperty ;
+<avgAggregator> a dashb:AggregatedObservableProperty ;
     rdfs:label "Average: bucket (hour)"@en ;
     dashb:accepts [ dashb:datatype xsd:double ] ;
     dashb:produces dashb:Input ;
     dashb:operation dashb:Avg .
 
-dashb:frequencyAggregator a dashb:AggregatedObservableProperty ;
+<frequencyAggregator> a dashb:AggregatedObservableProperty ;
     rdfs:label "Frequency"@en;
     dashb:accepts [ dashb:datatype xsd:double ] ;
     dashb:produces [ a om:Frequency ] ;
     dashb:operation dashb:Frequency .
 
-dashb:concatAggregator a dashb:AggregatedObservableProperty ;
+<concatAggregator> a dashb:AggregatedObservableProperty ;
     rdfs:label "Concatenation"@en ;
     dashb:accepts dashb:All ;
     dashb:operation dashb:Concat .

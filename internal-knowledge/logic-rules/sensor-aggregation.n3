@@ -8,7 +8,8 @@
 
 {
     ?x a dashb:ProcessedObservableProperty;
-        dashb:processor dashb:concatAggregator .
+        dashb:processor ?processor .
+	?processor dashb:operation dashb:Concat .
     [] e:findall ( ?source { ?x dashb:source ?source } ?sources) .
 
     ?sources rdf:first ?source1.
