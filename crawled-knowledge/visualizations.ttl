@@ -6,8 +6,6 @@
 
 @base <http://localhost/web-thing-gateway/things/> .
 
-dashb:RealtimeDataVisualization rdfs:subClassOf dashb:Visualization .
-
 <colored-measurement> a dashb:RealtimeDataVisualization ;
     rdfs:label "Textual display of observation (colored if thresholds are set)"@en ;
     dashb:component [
@@ -79,8 +77,6 @@ dashb:RealtimeDataVisualization rdfs:subClassOf dashb:Visualization .
         dashb:min 1;
         dashb:max 1
     ] .
-
-dashb:HistoricalDataVisualization rdfs:subClassOf dashb:Visualization .
 
 <time-series-line-chart-with-time-range-selector> a dashb:HistoricalDataVisualization ;
     rdfs:label "Line chart (updating at observation frequency)"@en ;

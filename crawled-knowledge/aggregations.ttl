@@ -5,8 +5,6 @@
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
 @prefix om: <http://www.ontology-of-units-of-measure.org/resource/om-2/> .
 
-dashb:Aggregator rdfs:subClassOf dashb:Processor .
-
 dashb:avgAggregator a dashb:AggregatedObservableProperty ;
     rdfs:label "Average: multisensor"@en ;
     rdfs:label "Average: bucket (minute)"@en ;
