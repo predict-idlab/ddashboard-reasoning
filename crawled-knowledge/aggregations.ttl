@@ -7,19 +7,19 @@
 
 @base <http://localhost/web-thing-gateway/things/> .
 
-<avgAggregator> a dashb:AggregatedObservableProperty ;
+<multisensorAverageAggregator> a dashb:AggregatedObservableProperty ;
     rdfs:label "Average: multisensor"@en ;
     dashb:accepts [ dashb:datatype xsd:double ] ;
     dashb:produces dashb:Input ;
     dashb:operation dashb:Avg .
 	
-<avgAggregator> a dashb:AggregatedObservableProperty ;
+<minuteBucketAverageAggregator> a dashb:AggregatedObservableProperty ;
     rdfs:label "Average: bucket (minute)"@en ;
     dashb:accepts [ dashb:datatype xsd:double ] ;
     dashb:produces dashb:Input ;
     dashb:operation dashb:Avg .
 	
-<avgAggregator> a dashb:AggregatedObservableProperty ;
+<hourBucketAverageAggregator> a dashb:AggregatedObservableProperty ;
     rdfs:label "Average: bucket (hour)"@en ;
     dashb:accepts [ dashb:datatype xsd:double ] ;
     dashb:produces dashb:Input ;
