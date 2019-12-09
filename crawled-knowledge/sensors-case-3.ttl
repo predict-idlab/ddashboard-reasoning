@@ -1,21 +1,19 @@
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix metrics: <http://dynamicdashboard.ilabt.imec.be/broker/ontologies/metrics#> .
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
 @prefix ssn: <http://www.w3.org/ns/ssn/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix dashb: <http://dynamicdashboard.ilabt.imec.be/broker/ontologies/dashboard#> .
+@prefix metrics: <http://dynamicdashboard.ilabt.imec.be/broker/ontologies/metrics#> .
 
-<http://dyversify-stack.idlab.be/scopes/icon.dyversify.televic/things/cosamira.module0/sensors/sensor_gnss_lat> rdfs:label "gnss_lat sensor (cosamira.module0)" ;
-  sosa:observes <http://dyversify-stack.idlab.be/scopes/icon.dyversify.televic/things/cosamira.module0/metrics/gnss_lat%3A%3Anumber> .
-<http://dyversify-stack.idlab.be/scopes/icon.dyversify.televic/things/cosamira.module0/metrics/gnss_lat%3A%3Anumber> a <http://IBCNServices.github.io/dyversify/Televic#Latitude> ;
-  rdfs:label "Latitude from gnss (cosamira.module0)" ;
+<http://localhost/web-thing-gateway/things/cosamira.module0.sensor_gnss_lat> rdfs:label "gnss_lat sensor (cosamira.module0)" ;
+  sosa:observes <http://localhost/web-thing-gateway/things/cosamira.module0.sensor_gnss_lat/properties/gnss_lat%3A%3Anumber> .
+<http://localhost/web-thing-gateway/things/cosamira.module0.sensor_gnss_lat/properties/gnss_lat%3A%3Anumber> rdfs:label "Latitude from gnss (cosamira.module0)" ;
   dashb:produces metrics:latitude .
-<http://dyversify-stack.idlab.be/scopes/icon.dyversify.televic/things/cosamira.module0> ssn:hasSubSystem <http://dyversify-stack.idlab.be/scopes/icon.dyversify.televic/things/cosamira.module0/sensors/sensor_gnss_lat> ;
+<http://localhost/systems/cosamira.module0> ssn:hasSubSystem <http://localhost/web-thing-gateway/things/cosamira.module0.sensor_gnss_lat> ;
   rdfs:label "cosamira.module0" .
 
-<http://dyversify-stack.idlab.be/scopes/icon.dyversify.televic/things/cosamira.module0/sensors/sensor_gnss_lon> rdfs:label "gnss_lon sensor (cosamira.module0)" ;
-  sosa:observes <http://dyversify-stack.idlab.be/scopes/icon.dyversify.televic/things/cosamira.module0/metrics/gnss_lon%3A%3Anumber> .
-<http://dyversify-stack.idlab.be/scopes/icon.dyversify.televic/things/cosamira.module0/metrics/gnss_lon%3A%3Anumber> a <http://IBCNServices.github.io/dyversify/Televic#Longitude> ;
-  rdfs:label "Longitude from gnss (cosamira.module0)" ;
+<http://localhost/web-thing-gateway/things/cosamira.module0.sensor_gnss_lat/sensors/sensor_gnss_lon> rdfs:label "gnss_lon sensor (cosamira.module0)" ;
+  sosa:observes <http://localhost/web-thing-gateway/things/cosamira.module0.sensor_gnss_lat/properties/gnss_lon%3A%3Anumber> .
+<http://localhost/web-thing-gateway/things/cosamira.module0.sensor_gnss_lat/properties/gnss_lon%3A%3Anumber> rdfs:label "Longitude from gnss (cosamira.module0)" ;
   dashb:produces metrics:longitude .
-<http://dyversify-stack.idlab.be/scopes/icon.dyversify.televic/things/cosamira.module0> ssn:hasSubSystem <http://dyversify-stack.idlab.be/scopes/icon.dyversify.televic/things/cosamira.module0/sensors/sensor_gnss_lon> ;
+<http://localhost/systems/cosamira.module0> ssn:hasSubSystem <http://localhost/web-thing-gateway/things/cosamira.module0.sensor_gnss_lat/sensors/sensor_gnss_lon> ;
   rdfs:label "cosamira.module0" .

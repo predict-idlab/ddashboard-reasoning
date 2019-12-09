@@ -5,11 +5,12 @@
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<https://dyversify.ilabt.imec.be/dynamic-dashboard/resultTime/1575470449793/propertyUrl/concatenation/observation#AggregateConcatenation> a dashb:AggregatedObservableProperty ;
+<http://localhost/web-thing-gateway/things/concatAggregator/properties/1> a dashb:AggregatedObservableProperty ;
     dashb:processor dashb:concatAggregator ;
-    dashb:source <http://dyversify-stack.idlab.be/scopes/icon.dyversify.televic/things/cosamira.module0/metrics/gnss_lat%3A%3Anumber>,
-        <http://dyversify-stack.idlab.be/scopes/icon.dyversify.televic/things/cosamira.module0/metrics/gnss_lon%3A%3Anumber> .
+    dashb:source <http://localhost/web-thing-gateway/things/cosamira.module0.sensor_gnss_lat/properties/gnss_lat%3A%3Anumber>, <http://localhost/web-thing-gateway/things/cosamira.module0.sensor_gnss_lat/properties/gnss_lon%3A%3Anumber>.
 
-[] dashb:dataSource <https://dyversify.ilabt.imec.be/dynamic-dashboard/resultTime/1575470449793/propertyUrl/concatenation/observation#AggregateConcatenation> ;
-    dashb:timeWindow [ a time:Instant ;
-            dashb:covers <https://dyversify.ilabt.imec.be/dynamic-dashboard/resultTime/1575470449793/propertyUrl/concatenation/observation#AggregateConcatenation> ] .
+<_:new-widget> dashb:dataSource <http://localhost/web-thing-gateway/things/concatAggregator/properties/1> ;
+    dashb:timeWindow [ 
+        a time:Instant ;
+        dashb:covers <http://localhost/web-thing-gateway/things/concatAggregator/properties/1> 
+    ] .

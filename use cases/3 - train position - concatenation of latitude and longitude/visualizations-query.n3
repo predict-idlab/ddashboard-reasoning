@@ -3,7 +3,7 @@
 
 {
 	?widget dashb:candidateVisualization ?visualization .
-	?visualization dashb:source <https://dyversify.ilabt.imec.be/dynamic-dashboard/resultTime/1575470449793/propertyUrl/concatenation/observation#AggregateConcatenation> ;
+	?visualization dashb:source <http://localhost/web-thing-gateway/things/concatAggregator/properties/1> ;
 		rdfs:label ?label .
 }
 =>
