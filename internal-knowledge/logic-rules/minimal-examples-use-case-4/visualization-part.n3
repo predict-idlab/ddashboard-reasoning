@@ -18,45 +18,6 @@
     ?visualization dashb:window ?window.
 }.
 
-{
-    ?widget dashb:timeWindow ?window.
-    ?window a time:Interval.
-
-    ?visualization a dashb:HistoricalDataVisualization.
-}
-=>
-{
-    ?visualization dashb:window ?window.
-}.
-
-# Visualizations consist of components (e.g. a wind rose has a "wind direction" and "wind speed" component).
-# Find out what sensor properties are supported by the components of given visualizations:
-# Basis of the argumentation: a visualization component supports a data source if the component accepts the data type or "bucket size" that a data source produces.
-
-{
-    ?component dashb:supports ?dataSource.
-}
-<=
-{
-    ?visualization a dashb:Visualization;
-        dashb:component ?component.
-    ?component dashb:accepts dashb:All.
-
-    ?dataSource dashb:produces ?prod.
-}.
-
-{
-    ?component dashb:supports ?dataSource.
-}
-<=
-{
-    ?visualization a dashb:Visualization;
-        dashb:component ?component.
-    ?component dashb:accepts [ ?p ?val ].
-
-    ?dataSource dashb:produces [ ?p ?val ].
-}.
-
 # When the visualization accepts a list of data inputs and a serice (e.g. aggregator) produces a lists of data outputs, check the data inputs in both lists one by one, 
 # if they match, register the data input as partially supported. If all data inputs were partially supported by the visualization component, the component states that it fully supports the list of data inputs.
 
@@ -97,20 +58,6 @@
 =>
 {
     ?component dashb:supports ?dataSource.
-}.
-
-# For historical visualizations, check if the bucket size of the data source matches with what the visualization component accepts.
-
-{
-    ?component dashb:supports ?dataSource.
-}
-<=
-{
-    ?visualization a dashb:Visualization;
-        dashb:component ?component.
-    ?component dashb:accepts [ dashb:bucket ?unit ].
-
-    ?dataSource dashb:bucket ?unit.
 }.
 
 # If a visualization can process a window,

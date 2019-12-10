@@ -1,0 +1,25 @@
+@prefix dashb: <http://dynamicdashboard.ilabt.imec.be/broker/ontologies/dashboard#> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix e: <http://eulersharp.sourceforge.net/2003/03swap/log-rules#>.
+
+# A concatenation produces a list of metrics instead of one metric; the list of metrics is the concatenation of the metrics produced by the given sources:
+
+{
+    ?x a dashb:ProcessedObservableProperty;
+        dashb:processor ?processor .
+	?processor a dashb:Concatenator .
+    [] e:findall ( ?source { ?x dashb:source ?source } ?sources) .
+
+    ?sources rdf:first ?source1.
+    ?sources rdf:rest ?rest.
+    ?rest rdf:first ?source2.
+
+    ?source1 dashb:produces ?prod1.
+    ?source2 dashb:produces ?prod2.
+}
+=>
+{
+    ?x dashb:produces (?prod1 ?prod2).
+}.
