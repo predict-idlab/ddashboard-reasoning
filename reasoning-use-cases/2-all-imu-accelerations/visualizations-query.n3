@@ -1,0 +1,14 @@
+@prefix dashb: <http://dynamicdashboard.ilabt.imec.be/broker/ontologies/dashboard#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+{
+	?widget dashb:candidateVisualization ?visualization .
+	?visualization dashb:source <http://localhost/web-thing-gateway/things/cosamira.module0.sensor_imu_y/properties/imu_y%3A%3Anumber> ,
+		<http://localhost/web-thing-gateway/things/cosamira.module0.sensor_imu_z/properties/imu_z%3A%3Anumber> ,
+		<http://localhost/web-thing-gateway/things/cosamira.module0.sensor_imu_yaw/properties/imu_yaw%3A%3Anumber> ;
+		rdfs:label ?label .
+}
+=>
+{
+	?visualization rdfs:label ?label .
+} .

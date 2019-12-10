@@ -1,0 +1,12 @@
+@prefix dashb: <http://dynamicdashboard.ilabt.imec.be/broker/ontologies/dashboard#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+{
+	?widget dashb:candidateVisualization ?visualization .
+	?visualization dashb:source <http://localhost/web-thing-gateway/things/cosamira.module0.sensor_spm1/properties/spm1%3A%3Anumber> ;
+		rdfs:label ?label .
+}
+=>
+{
+	?visualization rdfs:label ?label .
+} .

@@ -12,17 +12,69 @@
 <things/cosamira.module0.sensor_gnss_lat/properties/gnss_lat%3A%3Anumber> a sosa:ObservableProperty ;
 	rdfs:label "Latitude from gnss (cosamira.module0)" ;
 	dashb:produces metrics:latitude .
-<systems/cosamira.module0> a ssn:System ;
-	rdfs:label "cosamira.module0" ;
-	ssn:hasSubSystem <things/cosamira.module0.sensor_gnss_lat> .
-	
 
-<things/cosamira.module0.sensor_gnss_lat> a sosa:Sensor ;
+<things/cosamira.module0.sensor_gnss_lon> a sosa:Sensor ;
 	rdfs:label "gnss_lon sensor (cosamira.module0)" ;
-	sosa:observes <things/cosamira.module0.sensor_gnss_lat/properties/gnss_lon%3A%3Anumber> .
-<things/cosamira.module0.sensor_gnss_lat/properties/gnss_lon%3A%3Anumber> a sosa:ObservableProperty ;
+	sosa:observes <things/cosamira.module0.sensor_gnss_lon/properties/gnss_lon%3A%3Anumber> .
+<things/cosamira.module0.sensor_gnss_lon/properties/gnss_lon%3A%3Anumber> a sosa:ObservableProperty ;
 	rdfs:label "Longitude from gnss (cosamira.module0)" ;
 	dashb:produces metrics:longitude .
+
+<things/cosamira.module0.sensor_imu_y> a sosa:Sensor ;
+	rdfs:label "IMU sensor imu_y (cosamira.module0)" ;
+	sosa:observes <things/cosamira.module0.sensor_imu_y/properties/imu_y%3A%3Anumber> .
+<things/cosamira.module0.sensor_imu_y/properties/imu_y%3A%3Anumber> a sosa:ObservableProperty ;
+	rdfs:label "Acceleration in Y direction (cosamira.module0)" ;
+	dashb:produces metrics:linearAccelerationY .
+	
+<things/cosamira.module0.sensor_imu_z> a sosa:Sensor ;
+	rdfs:label "IMU sensor imu_z (cosamira.module0)" ;
+	sosa:observes <things/cosamira.module0.sensor_imu_z/properties/imu_z%3A%3Anumber> .
+<things/cosamira.module0.sensor_imu_z/properties/imu_z%3A%3Anumber> a sosa:ObservableProperty ;
+	rdfs:label "Acceleration in Z direction (cosamira.module0)" ;
+	dashb:produces metrics:linearAccelerationY .
+	
+<things/cosamira.module0.sensor_imu_yaw> a sosa:Sensor ;
+	rdfs:label "IMU sensor imu_yaw (cosamira.module0)" ;
+	sosa:observes <things/cosamira.module0.sensor_imu_yaw/properties/imu_yaw%3A%3Anumber> .
+<things/cosamira.module0.sensor_imu_yaw/properties/imu_yaw%3A%3Anumber> a sosa:ObservableProperty ;
+	rdfs:label "Yaw (cosamira.module0)" ;
+	dashb:produces metrics:linearAccelerationY .
+
+<things/cosamira.module0.sensor_spm1> a sosa:Sensor ;
+	rdfs:label "spm1 sensor (cosamira.module0)" ;
+	sosa:observes <things/cosamira.module0.sensor_spm1/properties/spm1%3A%3Anumber> .
+<things/cosamira.module0.sensor_spm1/properties/spm1%3A%3Anumber> a sosa:ObservableProperty ;
+	rdfs:label "Wheel Acceleration (cosamira.module0)" ;
+	dashb:produces metrics:linearAccelerationZ .
+	
 <systems/cosamira.module0> a ssn:System ;
 	rdfs:label "cosamira.module0" ;
-	ssn:hasSubSystem <things/cosamira.module0.sensor_gnss_lat/sensors/sensor_gnss_lon> .
+	ssn:hasSubSystem <things/cosamira.module0.sensor_gnss_lat> ,
+		<things/cosamira.module0.sensor_gnss_lon> ,
+		<things/cosamira.module0.sensor_imu_y> , 
+		<things/cosamira.module0.sensor_imu_z> ,
+		<things/cosamira.module0.sensor_imu_yaw> ,
+		<things/cosamira.module0.sensor_spm1> .
+		
+		
+<things/cosamira.module1.sensor_spm1> a sosa:Sensor ;
+	rdfs:label "spm1 sensor (cosamira.module1)" ;
+	sosa:observes <things/cosamira.module1.sensor_spm1/properties/spm1%3A%3Anumber> .
+<things/cosamira.module1.sensor_spm1/properties/spm1%3A%3Anumber> a sosa:ObservableProperty ;
+	rdfs:label "Wheel Acceleration (cosamira.module1)" ;
+	dashb:produces metrics:linearAccelerationZ .
+<systems/cosamira.module1> a ssn:System ;
+	rdfs:label "cosamira.module1" ;
+	ssn:hasSubSystem <things/cosamira.module1.sensor_spm1> .
+
+<things/cosamira.module2.sensor_spm1> a sosa:Sensor ;
+	rdfs:label "spm1 sensor (cosamira.module2)" ;
+	sosa:observes <things/cosamira.module2.sensor_spm1/properties/spm1%3A%3Anumber> .
+<things/cosamira.module2.sensor_spm1/properties/spm1%3A%3Anumber> a sosa:ObservableProperty ;
+	rdfs:label "Wheel Acceleration (cosamira.module2)" ;
+	dashb:produces metrics:linearAccelerationZ .
+<systems/cosamira.module2> a ssn:System ;
+	rdfs:label "cosamira.module2" ;
+	ssn:hasSubSystem <things/cosamira.module2.sensor_spm1> .
+			

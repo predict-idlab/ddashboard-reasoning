@@ -13,4 +13,4 @@
 	
 <http://localhost/web-thing-gateway/things/concatAggregator/properties/1> a dashb:AggregatedObservableProperty ;
     dashb:processor <http://localhost/web-thing-gateway/things/concatAggregator> ;
-    dashb:source <http://localhost/web-thing-gateway/things/cosamira.module0.sensor_gnss_lat/properties/gnss_lat%3A%3Anumber>, <http://localhost/web-thing-gateway/things/cosamira.module0.sensor_gnss_lat/properties/gnss_lon%3A%3Anumber>.
+    dashb:source <http://localhost/web-thing-gateway/things/cosamira.module0.sensor_gnss_lat/properties/gnss_lat%3A%3Anumber>, <http://localhost/web-thing-gateway/things/cosamira.module0.sensor_gnss_lon/properties/gnss_lon%3A%3Anumber>.

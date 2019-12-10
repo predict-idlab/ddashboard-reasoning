@@ -1,0 +1,12 @@
+@prefix dashb: <http://dynamicdashboard.ilabt.imec.be/broker/ontologies/dashboard#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+{
+	?widget dashb:candidateVisualization ?visualization .
+	?visualization dashb:source <http://localhost/web-thing-gateway/things/multisensorAverageAggregator/properties/1> ;
+		rdfs:label ?label .
+}
+=>
+{
+	?visualization rdfs:label ?label .
+} .
