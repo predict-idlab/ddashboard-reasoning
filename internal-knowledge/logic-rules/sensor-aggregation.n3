@@ -24,7 +24,8 @@
     ?x dashb:produces (?prod1 ?prod2).
 }.
 
-# assuming here that all sources for an aggregator have the same unit
+# Assuming here that all sources for an aggregator have the same unit:
+
 {
     ?op dashb:produces ?prod.
 
@@ -39,7 +40,8 @@
     ?x ?p ?prod.
 }.
 
-# in case an aggregate has a fixed produce/dimension
+# In case an aggregate has a fixed produces/dimension:
+
 {
     ?x a dashb:ProcessedObservableProperty;
         dashb:processor ?proc.
@@ -66,7 +68,7 @@
     ?x dashb:dimension ?prod.
 }.
 
-# dimensions for multi/bucket aggregates
+# Dimensions for multisensor/bucket aggregates
 {
     ?x a dashb:ProcessedObservableProperty;
         dashb:bucket ?bucket.
