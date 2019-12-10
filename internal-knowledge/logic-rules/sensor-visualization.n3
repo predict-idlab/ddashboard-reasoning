@@ -11,7 +11,7 @@
     ?widget dashb:timeWindow ?window.
     ?window a time:Instant.
 
-    ?visualization a dashb:Visualization. # TODO debug: cannot be changed into the expected dashb:RealtimeDataVisualization, crashes the "prop(s) => hour average aggregation => day range line chart" unit tests (in Renson unit tests).
+    ?visualization a dashb:Visualization.
 }
 =>
 {

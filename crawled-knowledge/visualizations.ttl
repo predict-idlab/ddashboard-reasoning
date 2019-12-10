@@ -6,23 +6,27 @@
 
 @base <http://localhost/web-thing-gateway/things/> .
 
-<colored-measurement> a dashb:RealtimeDataVisualization ;
+<colored-measurement> a dashb:TextualObservationVisualization, dashb:RealtimeDataVisualization ;
     rdfs:label "Textual display of observation (colored if thresholds are set)"@en ;
     dashb:component [
-        dashb:accepts [ dashb:datatype xsd:double ];
+        dashb:accepts [
+			dashb:datatype xsd:double 
+		];
         dashb:min 1;
         dashb:max 1
     ] .
 
-<column-chart> a dashb:RealtimeDataVisualization ;
+<column-chart> a dashb:ColumnChart, dashb:RealtimeDataVisualization ;
     rdfs:label "Column chart"@en ;
     dashb:component [
-        dashb:accepts [ dashb:datatype xsd:double ];
+		dashb:accepts [
+			dashb:datatype xsd:double 
+		];
         dashb:min 1;
         dashb:max 10
     ] .
 
-<marker-map> a dashb:RealtimeDataVisualization ;
+<marker-map> a dashb:Map, dashb:RealtimeDataVisualization ;
     rdfs:label "Map (displaying locations)"@en ;
     dashb:component [
         dashb:accepts ([ a om:EclipticLatitude ] [ a om:EclipticLongitude ]);
@@ -30,7 +34,7 @@
         dashb:max 1
     ] .
 
-<route-map> a dashb:RealtimeDataVisualization ;
+<route-map> a dashb:Map, dashb:RealtimeDataVisualization ;
     rdfs:label "Map (displaying routes)"@en ;
     dashb:component [
         dashb:accepts ([ a om:EclipticLatitude ] [ a om:EclipticLongitude ]);
@@ -38,34 +42,42 @@
         dashb:max 1
     ] .
 
-<modern-gauge> a dashb:RealtimeDataVisualization ;
+<modern-gauge> a dashb:Gauge, dashb:RealtimeDataVisualization ;
     rdfs:label "Gauge (modern style)"@en ;
     dashb:component [
-        dashb:accepts [ dashb:datatype xsd:double ];
+        dashb:accepts [ 
+			dashb:datatype xsd:double 
+		];
         dashb:min 1;
         dashb:max 1
     ] .
 
-<traditional-gauge> a dashb:RealtimeDataVisualization ;
+<traditional-gauge> a dashb:Gauge, dashb:RealtimeDataVisualization ;
     rdfs:label "Gauge (traditional style)"@en ;
     dashb:component [
-        dashb:accepts [ dashb:datatype xsd:double ];
+        dashb:accepts [ 
+			dashb:datatype xsd:double 
+		];
         dashb:min 1;
         dashb:max 1
     ] .
 
-<time-series-line-chart-with-time-range-selector> a dashb:RealtimeDataVisualization ;
+<time-series-line-chart-with-time-range-selector> a dashb:LineChart, dashb:RealtimeDataVisualization ;
     rdfs:label "Line chart (updating at observation frequency)"@en ;
     dashb:component [
-        dashb:accepts [ dashb:datatype xsd:double ];
+        dashb:accepts [ 
+			dashb:datatype xsd:double 
+		];
         dashb:min 1;
         dashb:max 1
     ] .
 
-<multiple-time-series-line-chart-with-time-range-selector> a dashb:RealtimeDataVisualization ;
+<multiple-time-series-line-chart-with-time-range-selector> a dashb:LineChart, dashb:RealtimeDataVisualization ;
     rdfs:label "Line chart (updating at observation frequency)"@en ;
     dashb:component [
-        dashb:accepts [ dashb:datatype xsd:double ];
+        dashb:accepts [ 
+			dashb:datatype xsd:double 
+		];
         dashb:min 2;
         dashb:max 10
     ] .
@@ -73,28 +85,34 @@
 <measurement-smiley> a dashb:RealtimeDataVisualization ;
     rdfs:label "Smiley (emotion according to configured thresholds)"@en ;
     dashb:component [
-        dashb:accepts [ dashb:datatype xsd:double ];
+        dashb:accepts [ 
+			dashb:datatype xsd:double 
+		];
         dashb:min 1;
         dashb:max 1
     ] .
 
-<time-series-line-chart-with-time-range-selector> a dashb:HistoricalDataVisualization ;
+<time-series-line-chart-with-time-range-selector> a dashb:LineChart, dashb:HistoricalDataVisualization ;
     rdfs:label "Line chart (updating at observation frequency)"@en ;
     dashb:component [
-        dashb:accepts [ dashb:datatype xsd:double ];    # Question: dashb:category is not used? Every metric has it described... However: its value is ALWAYS dashb:1D. Can we then leave this out? We nowhere have a dashb:2D, dashb:3D or whatever other dimensionality.
+        dashb:accepts [
+			dashb:datatype xsd:double 
+		];
         dashb:min 1;
         dashb:max 1
     ] .
 
-<day-range-line-chart> a dashb:HistoricalDataVisualization ;
+<day-range-line-chart> a dashb:LineChart, dashb:HistoricalDataVisualization ;
     rdfs:label "Line chart (hourly observations)"@en ;
     dashb:component [
-        dashb:accepts [ dashb:bucket time:unitHour ];
+        dashb:accepts [ 
+			dashb:bucket time:unitHour 
+		];
         dashb:min 1;
         dashb:max 10
     ] .
 
-<sensor-measurements-per-hour-table> a dashb:HistoricalDataVisualization ;
+<sensor-measurements-per-hour-table> a dashb:Table, dashb:HistoricalDataVisualization ;
     rdfs:label "Table (sensor measurements per hour)"@en ;
     dashb:component [
         dashb:accepts [ dashb:bucket time:unitHour ];
@@ -102,7 +120,7 @@
         dashb:max 10
     ] .
 
-<marker-map> a dashb:HistoricalDataVisualization ;
+<marker-map> a dashb:Map, dashb:HistoricalDataVisualization ;
     rdfs:label "Map (displaying locations)"@en ;
     dashb:component [
         dashb:accepts ([ a om:EclipticLatitude ] [ a om:EclipticLongitude ]);
@@ -110,7 +128,7 @@
         dashb:max 1
     ] .
 
-<route-map> a dashb:HistoricalDataVisualization ;
+<route-map> a dashb:Map, dashb:HistoricalDataVisualization ;
     rdfs:label "Map (displaying routes)"@en ;
     dashb:component [
         dashb:accepts ([ a om:EclipticLatitude ] [ a om:EclipticLongitude ]);

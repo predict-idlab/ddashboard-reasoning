@@ -5,11 +5,11 @@
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<_:new-widget> dashb:dataSource <http://localhost/web-thing-gateway/things/concatAggregator/properties/1> ;
+<_:new-widget> a dashb:Widget ;
+	dashb:dataSource <http://localhost/web-thing-gateway/things/concatAggregator/properties/1> ;
     dashb:timeWindow [ 
         a time:Instant ;
-        dashb:covers <http://localhost/web-thing-gateway/things/concatAggregator/properties/1> 
-    ] .
+	] .
 	
 <http://localhost/web-thing-gateway/things/concatAggregator/properties/1> a dashb:AggregatedObservableProperty ;
     dashb:processor <http://localhost/web-thing-gateway/things/concatAggregator> ;

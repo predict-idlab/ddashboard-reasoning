@@ -6,16 +6,23 @@
 
 @base <http://localhost/web-thing-gateway/> .
 
-<things/cosamira.module0.sensor_gnss_lat> rdfs:label "gnss_lat sensor (cosamira.module0)" ;
-  sosa:observes <things/cosamira.module0.sensor_gnss_lat/properties/gnss_lat%3A%3Anumber> .
-<things/cosamira.module0.sensor_gnss_lat/properties/gnss_lat%3A%3Anumber> rdfs:label "Latitude from gnss (cosamira.module0)" ;
-  dashb:produces metrics:latitude .
-<systems/cosamira.module0> ssn:hasSubSystem <things/cosamira.module0.sensor_gnss_lat> ;
-  rdfs:label "cosamira.module0" .
+<things/cosamira.module0.sensor_gnss_lat> a sosa:Sensor ;
+	rdfs:label "gnss_lat sensor (cosamira.module0)" ;
+	sosa:observes <things/cosamira.module0.sensor_gnss_lat/properties/gnss_lat%3A%3Anumber> .
+<things/cosamira.module0.sensor_gnss_lat/properties/gnss_lat%3A%3Anumber> a sosa:ObservableProperty ;
+	rdfs:label "Latitude from gnss (cosamira.module0)" ;
+	dashb:produces metrics:latitude .
+<systems/cosamira.module0> a ssn:System ;
+	rdfs:label "cosamira.module0" ;
+	ssn:hasSubSystem <things/cosamira.module0.sensor_gnss_lat> .
+	
 
-<things/cosamira.module0.sensor_gnss_lat/sensors/sensor_gnss_lon> rdfs:label "gnss_lon sensor (cosamira.module0)" ;
-  sosa:observes <things/cosamira.module0.sensor_gnss_lat/properties/gnss_lon%3A%3Anumber> .
-<things/cosamira.module0.sensor_gnss_lat/properties/gnss_lon%3A%3Anumber> rdfs:label "Longitude from gnss (cosamira.module0)" ;
-  dashb:produces metrics:longitude .
-<systems/cosamira.module0> ssn:hasSubSystem <things/cosamira.module0.sensor_gnss_lat/sensors/sensor_gnss_lon> ;
-  rdfs:label "cosamira.module0" .
+<things/cosamira.module0.sensor_gnss_lat> a sosa:Sensor ;
+	rdfs:label "gnss_lon sensor (cosamira.module0)" ;
+	sosa:observes <things/cosamira.module0.sensor_gnss_lat/properties/gnss_lon%3A%3Anumber> .
+<things/cosamira.module0.sensor_gnss_lat/properties/gnss_lon%3A%3Anumber> a sosa:ObservableProperty ;
+	rdfs:label "Longitude from gnss (cosamira.module0)" ;
+	dashb:produces metrics:longitude .
+<systems/cosamira.module0> a ssn:System ;
+	rdfs:label "cosamira.module0" ;
+	ssn:hasSubSystem <things/cosamira.module0.sensor_gnss_lat/sensors/sensor_gnss_lon> .

@@ -7,31 +7,26 @@
 
 @base <http://localhost/web-thing-gateway/things/> .
 
-<multisensorAverageAggregator> a dashb:AggregatedObservableProperty ;
+<multisensorAverageAggregator> a dashb:Averager, dashb:AggregatedObservableProperty ;
     rdfs:label "Average: multisensor"@en ;
     dashb:accepts [ dashb:datatype xsd:double ] ;
-    dashb:produces dashb:Input ;
-    dashb:operation dashb:Avg .
+    dashb:produces dashb:Input .
 	
-<minuteBucketAverageAggregator> a dashb:AggregatedObservableProperty ;
+<minuteBucketAverageAggregator> a dashb:Averager, dashb:AggregatedObservableProperty ;
     rdfs:label "Average: bucket (minute)"@en ;
     dashb:accepts [ dashb:datatype xsd:double ] ;
-    dashb:produces dashb:Input ;
-    dashb:operation dashb:Avg .
+    dashb:produces dashb:Input .
 	
-<hourBucketAverageAggregator> a dashb:AggregatedObservableProperty ;
+<hourBucketAverageAggregator> a dashb:Averager, dashb:AggregatedObservableProperty ;
     rdfs:label "Average: bucket (hour)"@en ;
     dashb:accepts [ dashb:datatype xsd:double ] ;
-    dashb:produces dashb:Input ;
-    dashb:operation dashb:Avg .
+    dashb:produces dashb:Input .
 
-<frequencyAggregator> a dashb:AggregatedObservableProperty ;
+<frequencyAggregator> a dashb:FrequencyCalculator, dashb:AggregatedObservableProperty ;
     rdfs:label "Frequency"@en;
     dashb:accepts [ dashb:datatype xsd:double ] ;
-    dashb:produces [ a om:Frequency ] ;
-    dashb:operation dashb:Frequency .
+    dashb:produces [ a om:Frequency ] .
 
-<concatAggregator> a dashb:AggregatedObservableProperty ;
+<concatAggregator> a dashb:Concatenator, dashb:AggregatedObservableProperty ;
     rdfs:label "Concatenation"@en ;
-    dashb:accepts dashb:All ;
-    dashb:operation dashb:Concat .
+    dashb:accepts dashb:All .
