@@ -115,7 +115,9 @@
 <sensor-measurements-per-hour-table> a dashb:Table, dashb:HistoricalDataVisualization ;
     rdfs:label "Table (sensor measurements per hour)"@en ;
     dashb:component [
-        dashb:accepts [ dashb:bucket time:unitHour ];
+        dashb:accepts [ 
+			dashb:bucket time:unitHour 
+		];
         dashb:min 1;
         dashb:max 10
     ] .

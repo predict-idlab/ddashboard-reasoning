@@ -78,6 +78,11 @@
 #    Data properties
 #################################################################
 
+###  http://dynamicdashboard.ilabt.imec.be/broker/ontologies/dashboard#datatype
+:datatype rdf:type owl:DatatypeProperty ;
+          rdfs:domain :Metric .
+
+
 ###  http://dynamicdashboard.ilabt.imec.be/broker/ontologies/dashboard#max
 :max rdf:type owl:DatatypeProperty ;
      rdfs:domain :VisualizationComponent ;
@@ -131,7 +136,7 @@
 ###  http://dynamicdashboard.ilabt.imec.be/broker/ontologies/dashboard#HistoricalDataVisualization
 :HistoricalDataVisualization rdf:type owl:Class ;
                              rdfs:subClassOf :Visualization ;
-                             owl:disjointWith :RealtimeVisualization .
+                             owl:disjointWith :RealtimeDataVisualization .
 
 
 ###  http://dynamicdashboard.ilabt.imec.be/broker/ontologies/dashboard#LineChart
@@ -165,7 +170,8 @@
 
 
 ###  http://dynamicdashboard.ilabt.imec.be/broker/ontologies/dashboard#Processor
-:Processor rdf:type owl:Class .
+:Processor rdf:type owl:Class ;
+           rdfs:subClassOf <http://www.w3.org/ns/sosa/Sensor> .
 
 
 ###  http://dynamicdashboard.ilabt.imec.be/broker/ontologies/dashboard#QualitativeMetric
@@ -179,9 +185,9 @@
                     rdfs:subClassOf :Metric .
 
 
-###  http://dynamicdashboard.ilabt.imec.be/broker/ontologies/dashboard#RealtimeVisualization
-:RealtimeVisualization rdf:type owl:Class ;
-                       rdfs:subClassOf :Visualization .
+###  http://dynamicdashboard.ilabt.imec.be/broker/ontologies/dashboard#RealtimeDataVisualization
+:RealtimeDataVisualization rdf:type owl:Class ;
+                           rdfs:subClassOf :Visualization .
 
 
 ###  http://dynamicdashboard.ilabt.imec.be/broker/ontologies/dashboard#ScatterPlot
