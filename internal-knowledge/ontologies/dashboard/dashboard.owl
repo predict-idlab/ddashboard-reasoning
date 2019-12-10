@@ -9,7 +9,8 @@
 <http://dynamicdashboard.ilabt.imec.be/broker/ontologies/dashboard#> rdf:type owl:Ontology ;
                                                                       owl:imports <http://www.w3.org/2006/time#2016> ,
                                                                                   <http://www.w3.org/ns/ssn/> ,
-                                                                                  <http://www.ontology-of-units-of-measure.org/resource/om-2/> .
+                                                                                  <http://www.ontology-of-units-of-measure.org/resource/om-2/> ;
+                                                                      <http://purl.org/dc/terms/creator> "Sander Vanden Hautte" .
 
 #################################################################
 #    Object Properties
@@ -148,8 +149,7 @@
 
 
 ###  http://dynamicdashboard.ilabt.imec.be/broker/ontologies/dashboard#Metric
-:Metric rdf:type owl:Class ;
-        owl:equivalentClass <http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity> .
+:Metric rdf:type owl:Class .
 
 
 ###  http://dynamicdashboard.ilabt.imec.be/broker/ontologies/dashboard#PieChart
@@ -166,6 +166,17 @@
 
 ###  http://dynamicdashboard.ilabt.imec.be/broker/ontologies/dashboard#Processor
 :Processor rdf:type owl:Class .
+
+
+###  http://dynamicdashboard.ilabt.imec.be/broker/ontologies/dashboard#QualitativeMetric
+:QualitativeMetric rdf:type owl:Class ;
+                   rdfs:subClassOf :Metric .
+
+
+###  http://dynamicdashboard.ilabt.imec.be/broker/ontologies/dashboard#QuantitativeMetric
+:QuantitativeMetric rdf:type owl:Class ;
+                    owl:equivalentClass <http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity> ;
+                    rdfs:subClassOf :Metric .
 
 
 ###  http://dynamicdashboard.ilabt.imec.be/broker/ontologies/dashboard#RealtimeVisualization
