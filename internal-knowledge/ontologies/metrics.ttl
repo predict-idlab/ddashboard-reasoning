@@ -4,7 +4,10 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-# --- Metrics (default definitions of well-known metrics to be reused) ---
+metrics:quantity a dashb:Metric ;
+    a om:Quantity ;
+    dashb:datatype xsd:double .
+	
 metrics:celsiusTemperature a dashb:Metric;
     a om:Temperature;
     om:hasUnit om:degreeCelsius;
@@ -37,10 +40,6 @@ metrics:acceleration a dashb:Metric ;
     a om:Acceleration;
     dashb:category dashb:1D ;
     dashb:datatype xsd:double .
-
-# No time to investigate now why subclassing the metric results in no suggested visualizations with the reasoning: (TODO fixed on the entire acceleration metrics hierarchy.)
-# metrics:linearAcceleration rdfs:subClassOf metrics:acceleration ;
-#     om:hasUnit om:metrePerSecond-TimeSquared .
 
 metrics:linearAcceleration a dashb:Metric ;
     a om:Acceleration;
@@ -98,11 +97,6 @@ metrics:degreesAngle a dashb:Metric ;
 metrics:cubicAirFlow a dashb:Metric ;
     a om:VolumetricFlowRate ;
     om:hasUnit om:cubicMetrePerSecond-Time ;
-    dashb:datatype xsd:double .
-
-# generic metric if actual unit is unknown
-metrics:quantity a dashb:Metric ;
-    a om:Quantity ;
     dashb:datatype xsd:double .
 
 metrics:latitude a dashb:Metric ;

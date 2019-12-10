@@ -33,7 +33,9 @@
         dashb:processor ?proc.
 
     ?proc ?p dashb:Input.
-} => {
+} 
+=> 
+{
     ?x ?p ?prod.
 }.
 
@@ -45,9 +47,12 @@
     ?proc dashb:produces ?prod.
 
     ?prod log:notEqualTo dashb:Input.
-} => {
+} 
+=> 
+{
     ?x dashb:produces ?prod.
 }.
+
 {
     ?x a dashb:ProcessedObservableProperty;
         dashb:processor ?proc.
@@ -55,7 +60,9 @@
     ?proc dashb:dimension ?prod.
 
     ?prod log:notEqualTo dashb:Input.
-} => {
+} 
+=> 
+{
     ?x dashb:dimension ?prod.
 }.
 
@@ -63,12 +70,17 @@
 {
     ?x a dashb:ProcessedObservableProperty;
         dashb:bucket ?bucket.
-} => {
+} 
+=> 
+{
     ?x dashb:dimension time:GeneralDurationDescription.
 }.
+
 {
     ?x a dashb:ProcessedObservableProperty.
     [] e:findall ( ?bucket { ?x dashb:bucket ?bucket } ()) .
-} => {
+} 
+=> 
+{
     ?x dashb:dimension dashb:Input.
 }.
