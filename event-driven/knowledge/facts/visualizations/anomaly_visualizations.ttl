@@ -1,0 +1,18 @@
+@prefix dashb: <http://dynamicdashboard.ilabt.imec.be/broker/ontologies/dashboard#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix om: <http://www.ontology-of-units-of-measure.org/resource/om-2/> .
+@prefix folio: <http://IBCNServices.github.io/Folio-Ontology/Folio.owl#> .
+@prefix renson: <http://renson.be/broker/visualizations/roomtype#> .
+
+dashb:AnomalyVisualization rdfs:subClassOf dashb:Visualization .
+
+<http://localhost/sensor-gateway/things/visualizations/general-anomaly-info> a dashb:AnomalyVisualization ;
+    rdfs:label "General anomaly info"@en ;
+    dashb:implementation <http://localhost/sensor-gateway/static/visualization_serving/general_anomaly_info.js> ;
+    dashb:component [
+        dashb:accepts [ dashb:datatype folio:Anomaly ];
+        dashb:min 1;
+        dashb:max 1
+    ] .

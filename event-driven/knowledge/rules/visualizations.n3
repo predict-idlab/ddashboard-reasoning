@@ -1,0 +1,166 @@
+@prefix dashb: <http://dynamicdashboard.ilabt.imec.be/broker/ontologies/dashboard#> .
+@prefix e: <http://eulersharp.sourceforge.net/2003/03swap/log-rules#>.
+@prefix math: <http://www.w3.org/2000/10/swap/math#>.
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix list: <http://www.w3.org/2000/10/swap/list#>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+# Visualizations can have as window either an instant (if they can visualize realtime data)
+# or a time interval (if they can visualize historical data):
+{
+    ?widget dashb:timeWindow ?window.
+    ?window a time:Instant.
+
+    ?visualization a dashb:RealtimeDataVisualization.
+}
+=>
+{
+    #?visualization dashb:window ?window.
+    ?widget dashb:consideredVisualizationComposition [
+        dashb:visualization ?visualization
+    ] .
+}.
+
+{
+    ?widget dashb:timeWindow ?window.
+    ?window a time:Interval.
+
+    ?visualization a dashb:HistoricalDataVisualization.
+}
+=>
+{
+    #?visualization dashb:window ?window.
+    ?widget dashb:consideredVisualizationComposition [
+        dashb:visualization ?visualization
+    ] .
+}.
+
+# Visualizations consist of components (e.g. a wind rose has a "wind direction" and "wind speed" component).
+# Find out what sensor properties are supported by the components of given visualizations:
+# Basis of the argumentation: a visualization component supports a data source if the component accepts the data type or "bucket size" that a data source produces.
+
+# First copy the component info from the visualization to the widget.
+# Otherwise, if reasoning is performed for multiple widgets, we write many times to the component of the same visualization.
+{
+    ?widget dashb:consideredVisualizationComposition ?composition .
+    ?composition dashb:visualization ?visualization .
+    ?visualization dashb:component ?component .
+}
+=>
+{
+    ?composition dashb:component [] .
+} .
+{
+    ?widget dashb:consideredVisualizationComposition ?composition .
+    ?composition dashb:visualization ?visualization .
+
+    ?visualization dashb:component ?component .
+    ?component ?p ?v .
+
+    ?composition dashb:component ?componentCopy .
+}
+=>
+{
+    ?componentCopy ?p ?v .
+} .
+
+# If a components accepts any input whatsoever, it immediately supports it of course.
+{
+    ?component dashb:supports ?dataSource.
+}
+<=
+{
+    ?widget dashb:consideredVisualizationComposition ?composition .
+    ?composition dashb:component ?component .
+    ?component dashb:accepts dashb:All .
+
+    ?dataSource dashb:produces ?someInput .
+}.
+
+# If a component accepts only a certain metric (e.g. only temperature), it only supports data sources that produce that metric;
+{
+    ?component dashb:supports ?dataSource .
+}
+<=
+{
+    ?widget dashb:consideredVisualizationComposition ?composition .
+    ?composition dashb:component ?component .
+    ?component dashb:accepts [ ?p ?val ] .
+
+    ?dataSource dashb:produces [ ?p ?val ] .
+}.
+
+# If a component accepts a list of data inputs (e.g. certain metrics)
+# and a data source (e.g. aggregator) also produces a list of data outputs,
+# check the data inputs in both lists one by one (with the two(!) rules below, reasoner executes all rules repeatedly until no new results can be deduced);
+# if some list elements match, register them as partially supported.
+{
+    ?widget dashb:consideredVisualizationComposition ?composition .
+    ?composition dashb:component ?component .
+    ?component dashb:accepts ?list.
+    ?list rdf:first [ ?p ?val ].
+    ?list rdf:rest ?rest.
+
+    ?dataSource dashb:produces ?dataSourceList.
+    ?dataSourceList rdf:first [ ?p ?val ].
+    ?dataSourceList rdf:rest ?dataSourceRest.
+}
+=>
+{
+    ?component dashb:partialSupport (?dataSource ?rest ?dataSourceRest).
+}.
+
+{
+    ?component dashb:partialSupport (?dataSource ?list ?dataSourceList).
+
+    ?list rdf:first [ ?p ?val ].
+    ?list rdf:rest ?rest.
+
+    ?dataSourceList rdf:first [ ?p ?val ].
+    ?dataSourceList rdf:rest ?dataSourceRest.
+}
+=>
+{
+    ?component dashb:partialSupport (?dataSource ?rest ?dataSourceRest).
+}.
+
+# If all data inputs were partially supported by the visualization component (meaning no "rest" remains),
+# the component states that it fully supports the list of data inputs.
+{
+    ?component dashb:partialSupport (?dataSource () ()).
+}
+=>
+{
+    ?component dashb:supports ?dataSource.
+}.
+
+# For historical visualizations, check if the bucket sizes of the component and data source match.
+{
+    ?component dashb:supports ?dataSource.
+}
+<=
+{
+    ?widget dashb:consideredVisualizationComposition ?composition .
+    ?composition dashb:component ?component .
+    ?component dashb:accepts [ dashb:bucket ?unit ].
+
+    ?dataSource dashb:bucket ?unit.
+}.
+
+# Finally, if all criteria above have been met, mark the visualization as a worthy candidate for the widget.
+{
+    ?widget dashb:dataSource ?dataSource ;
+        # dashb:timeWindow ?window ;
+        dashb:consideredVisualizationComposition ?composition .
+
+    ?composition dashb:visualization ?visualization .
+    ?composition dashb:component ?component .
+
+    ?component dashb:supports ?dataSource .
+
+    #?visualization dashb:source ?dataSource .
+}
+=>
+{
+    ?widget dashb:candidateVisualization ?visualization .
+}.

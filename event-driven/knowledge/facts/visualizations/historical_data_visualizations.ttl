@@ -1,0 +1,16 @@
+@prefix dashb: <http://dynamicdashboard.ilabt.imec.be/broker/ontologies/dashboard#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix om: <http://www.ontology-of-units-of-measure.org/resource/om-2/> .
+
+dashb:HistoricalDataVisualization rdfs:subClassOf dashb:Visualization .
+
+<http://localhost/sensor-gateway/things/visualizations/time-series-line-chart-with-time-range-selector> a dashb:HistoricalDataVisualization ;
+    rdfs:label "Line chart (updating at observation frequency)"@en ;
+    dashb:implementation <http://localhost/sensor-gateway/static/visualization_serving/time_series_line_chart_with_time_range_selector.js> ;
+    dashb:component [
+        dashb:accepts [ dashb:datatype xsd:double ];    # Question: dashb:category is not used? Every metric has it described... However: its value is ALWAYS dashb:1D. Can we then leave this out? We nowhere have a dashb:2D, dashb:3D or whatever other dimensionality.
+        dashb:min 1;
+        dashb:max 1
+    ] .

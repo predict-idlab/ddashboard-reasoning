@@ -1,0 +1,38 @@
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix folio: <http://IBCNServices.github.io/Folio-Ontology/Folio.owl#> .
+@prefix ssn: <http://www.w3.org/ns/ssn/> .
+@prefix ns5: <https://idlab-iot.tengu.io/api/v1/vocabulary/> .
+@prefix ns6: <https://idlab-iot.tengu.io/api/v1/booleans/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dashb: <http://dynamicdashboard.ilabt.imec.be/broker/ontologies/dashboard#> .
+
+<https://gitlab.ilabt.imec.be/dyversify/dyversify-semantic-fault-detector/reasoner/HEALTHBOX3.171030S0005.4/sensor.indoor_relative_humidity.humidity::number/1532534310000/1532534580000> a folio:Anomaly,
+        folio:ShowerAnomaly ;
+    dcterms:description "shower" ;
+    sosa:resultTime "2019-11-26T12:11:50.224957+00:00"^^xsd:dateTime ;
+    sosa:usedProcedure <https://gitlab.ilabt.imec.be/dyversify/semantic-fault-detector/> ;
+    ssn:wasOriginatedBy <http://example.com/stimulus/HEALTHBOX3.171030S0005.4/sensor.indoor_relative_humidity.humidity%3A%3Anumber/1532534310000/1532534580000> ;
+    ns6:update "false" ;
+    ns5:thingId "HEALTHBOX3.171030S0005.4" ;
+    ns5:metricId "sensor.indoor_relative_humidity.humidity::number" .
+
+<https://gitlab.ilabt.imec.be/dyversify/semantic-fault-detector/> a sosa:Procedure ;
+    prov:specializationOf <http://example.com/procedure_bn/2019-11-26T12%3A11%3A50.224957%2B00%3A00> .
+
+<http://example.com/procedure_bn/2019-11-26T12%3A11%3A50.224957%2B00%3A00> rdfs:label "SReasoner" .
+
+<http://example.com/stimulus/HEALTHBOX3.171030S0005.4/sensor.indoor_relative_humidity.humidity%3A%3Anumber/1532534310000/1532534580000> a ssn:Stimulus ;
+    folio:fromObservation <http://dyversify-stack.idlab.be/scopes/icon.dyversify.renson/things/HEALTHBOX3.171030S0005.4/metrics/sensor.indoor_relative_humidity.humidity%3A%3Anumber/observations/1532534310000> ;
+    folio:toObservation <http://dyversify-stack.idlab.be/scopes/icon.dyversify.renson/things/HEALTHBOX3.171030S0005.4/metrics/sensor.indoor_relative_humidity.humidity%3A%3Anumber/observations/1532534580000> ;
+    folio:observedProperty <http://dyversify-stack.idlab.be/scopes/icon.dyversify.renson/things/HEALTHBOX3.171030S0005.4/metrics/sensor.indoor_relative_humidity.humidity%3A%3Anumber> .
+
+<http://dyversify-stack.idlab.be/scopes/icon.dyversify.renson/things/HEALTHBOX3.171030S0005.4/metrics/sensor.indoor_relative_humidity.humidity%3A%3Anumber>  a <http://IBCNServices.github.io/dyversify/Renson#CO2> ;
+    rdfs:label "Relative humidity (Healthbox 171030S0005.4)" ;
+    ns5:metricId "sensor.indoor.relative.humidity.humidity::number" ;
+    dashb:produces <http://dynamicdashboard.ilabt.imec.be/broker/ontologies/metrics#relativeHumidity> ;
+    sosa:isObservedBy <http://dyversify-stack.idlab.be/scopes/icon.dyversify.renson/things/HEALTHBOX3.171030S0005.4> .
+<http://dyversify-stack.idlab.be/scopes/icon.dyversify.renson/things/HEALTHBOX3.171030S0005.4/metrics/sensor.indoor_relative_humidity.humidity%3A%3Anumber/observations/1532534310000> sosa:resultTime "1532534310000"^^xsd:dateTime .
+<http://dyversify-stack.idlab.be/scopes/icon.dyversify.renson/things/HEALTHBOX3.171030S0005.4/metrics/sensor.indoor_relative_humidity.humidity%3A%3Anumber/observations/1532534580000> sosa:resultTime "1532534580000"^^xsd:dateTime .

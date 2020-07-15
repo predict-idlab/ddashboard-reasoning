@@ -1,0 +1,15 @@
+@prefix dashb: <http://dynamicdashboard.ilabt.imec.be/broker/ontologies/dashboard#> .
+
+{
+    ?widget a dashb:Widget ;
+        dashb:widgetName ?widgetName ; # Description of the anomaly or sensor property to be visualized in this widget.
+        dashb:visualization ?visualization ; # Visualization to display the info about the given anomaly or the historical data of the sensor property.
+        dashb:dataSource ?dataSource . # The anomaly or sensor property that is visualized in this widget.
+}
+=>
+{
+    ?widget a dashb:Widget ;
+        dashb:widgetName ?widgetName ;
+        dashb:visualization ?visualization ;
+        dashb:dataSource ?dataSource .
+} .

@@ -1,0 +1,54 @@
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix folio: <http://IBCNServices.github.io/Folio-Ontology/Folio.owl#> .
+@prefix ssn: <http://www.w3.org/ns/ssn/> .
+@prefix ns7: <https://idlab-iot.tengu.io/api/v1/vocabulary/> .
+@prefix ns2: <https://idlab-iot.tengu.io/api/v1/booleans/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dashb: <http://dynamicdashboard.ilabt.imec.be/broker/ontologies/dashboard#> .
+
+<https://renson.eu/dyversify/room-type-classifier/HEALTHBOX3.171030S0005/01a940db-c503-4cad-b2b9-f427b8913051> a folio:Anomaly,
+        folio:RelabeledAnomaly,
+        folio:UnexpectedRoomTypeAnomaly ;
+    dcterms:description "Untypical behaviour for given room type." ;
+    sosa:resultTime "2019-11-19T13:51:04.303470+00:00"^^xsd:dateTime ;
+    sosa:usedProcedure <https://renson.eu/dyversify/anomaly-detectors/room-type-classifier> ;
+    ssn:wasOriginatedBy <http://example.com/stimulus/HEALTHBOX3.171030S0005.2/sensor.indoor.CO2.concentration%3A%3Anumber/1536883200000/1536969570000>,
+        <http://example.com/stimulus/HEALTHBOX3.171030S0005.2/sensor.indoor.absolute.humidity.humidity/1536883200000/1536969570000> ;
+    ns7:thingId "HEALTHBOX3.171030S0005.2" ;
+    ns7:metricId "sensor.indoor.CO2.concentration%3A%3Anumber" ;
+    ns2:update "false" .
+    
+<https://renson.eu/dyversify/anomaly-detectors/room-type-classifier> a sosa:Procedure ;
+    prov:specializationOf <http://example.com/procedure_bn/2019-11-19T13%3A51%3A04.303470%2B00%3A00> .
+
+<http://example.com/procedure_bn/2019-11-19T13%3A51%3A04.303470%2B00%3A00> rdfs:label "RensonRuleBasedAnomalyDetection" .
+
+<http://example.com/stimulus/HEALTHBOX3.171030S0005.2/sensor.indoor.CO2.concentration%3A%3Anumber/1536883200000/1536969570000> a ssn:Stimulus ;
+    folio:fromObservation <http://dyversify-stack.idlab.be/scopes/icon.dyversify.renson/things/HEALTHBOX3.171030S0005.2/metrics/sensor.indoor.CO2.concentration%3A%3Anumber/observations/1536883200000> ;
+    folio:observedProperty <http://dyversify-stack.idlab.be/scopes/icon.dyversify.renson/things/HEALTHBOX3.171030S0005.2/metrics/sensor.indoor.CO2.concentration%3A%3Anumber> ;
+    folio:toObservation <http://dyversify-stack.idlab.be/scopes/icon.dyversify.renson/things/HEALTHBOX3.171030S0005.2/metrics/sensor.indoor.CO2.concentration%3A%3Anumber/observations/1536969570000> .
+
+<http://example.com/stimulus/HEALTHBOX3.171030S0005.2/sensor.indoor.absolute.humidity.humidity/1536883200000/1536969570000> a ssn:Stimulus ;
+    folio:fromObservation <http://dyversify-stack.idlab.be/scopes/icon.dyversify.renson/things/HEALTHBOX3.171030S0005.2/metrics/sensor.indoor.absolute.humidity.humidity/observations/1536883200000> ;
+    folio:observedProperty <http://dyversify-stack.idlab.be/scopes/icon.dyversify.renson/things/HEALTHBOX3.171030S0005.2/metrics/sensor.indoor.absolute.humidity.humidity> ;
+    folio:toObservation <http://dyversify-stack.idlab.be/scopes/icon.dyversify.renson/things/HEALTHBOX3.171030S0005.2/metrics/sensor.indoor.absolute.humidity.humidity/observations/1536969570000> .
+
+
+<http://dyversify-stack.idlab.be/scopes/icon.dyversify.renson/things/HEALTHBOX3.171030S0005.2/metrics/sensor.indoor.CO2.concentration%3A%3Anumber> a <http://IBCNServices.github.io/dyversify/Renson#CO2> ;
+    rdfs:label "CO2 concentration (Healthbox 171030S0005.2)" ;
+    ns7:metricId "sensor.indoor.CO2.concentration%3A%3Anumber::number" ;
+    dashb:produces <http://dynamicdashboard.ilabt.imec.be/broker/ontologies/metrics#airParticlesPpmConcentration> ;
+    sosa:isObservedBy <http://dyversify-stack.idlab.be/scopes/icon.dyversify.renson/things/HEALTHBOX3.171030S0005.2> .
+<http://dyversify-stack.idlab.be/scopes/icon.dyversify.renson/things/HEALTHBOX3.171030S0005.2/metrics/sensor.indoor.CO2.concentration%3A%3Anumber/observations/1536883200000> sosa:resultTime "1536883200000"^^xsd:dateTime .
+<http://dyversify-stack.idlab.be/scopes/icon.dyversify.renson/things/HEALTHBOX3.171030S0005.2/metrics/sensor.indoor.CO2.concentration%3A%3Anumber/observations/1536969570000> sosa:resultTime "1536969570000"^^xsd:dateTime .
+
+<http://dyversify-stack.idlab.be/scopes/icon.dyversify.renson/things/HEALTHBOX3.171030S0005.2/metrics/sensor.indoor.absolute.humidity.humidity> a <http://IBCNServices.github.io/dyversify/Renson#AbsoluteHumidity> ;
+    rdfs:label "Absolute humidity (Healthbox 171030S0005.2)" ;
+    ns7:metricId "sensor.indoor.absolute.humidity.humidity::number" ;
+    dashb:produces <http://dynamicdashboard.ilabt.imec.be/broker/ontologies/metrics#absoluteHumidity> ;
+    sosa:isObservedBy <http://dyversify-stack.idlab.be/scopes/icon.dyversify.renson/things/HEALTHBOX3.171030S0005.2> .
+<http://dyversify-stack.idlab.be/scopes/icon.dyversify.renson/things/HEALTHBOX3.171030S0005.2/metrics/sensor.indoor.absolute.humidity.humidity/observations/1536883200000> sosa:resultTime "1536883200000"^^xsd:dateTime .
+<http://dyversify-stack.idlab.be/scopes/icon.dyversify.renson/things/HEALTHBOX3.171030S0005.2/metrics/sensor.indoor.absolute.humidity.humidity/observations/1536969570000> sosa:resultTime "1536969570000"^^xsd:dateTime .

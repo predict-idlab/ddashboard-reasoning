@@ -1,0 +1,35 @@
+@prefix ns1: <http://www.w3.org/ns/sosa/> .
+@prefix ns2: <http://IBCNServices.github.io/Folio-Ontology/Folio.owl#> .
+@prefix ns3: <http://www.w3.org/ns/ssn/> .
+@prefix ns4: <https://idlab-iot.tengu.io/api/v1/vocabulary/> .
+@prefix ns5: <http://purl.org/dc/terms/> .
+@prefix ns6: <https://idlab-iot.tengu.io/api/v1/booleans/> .
+@prefix ns7: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://televic/anomaly/cosmaira.module0/spm/1970-01-01T00:00:00.000012+00:00/kmeans> a ns2:Anomaly,
+        ns2:TrackIssueAnomaly ;
+    ns5:description "Pattern with label 5 detected." ;
+    ns1:resultTime "1970-01-01T00:00:00.000012+00:00"^^xsd:dateTime ;
+    ns1:usedProcedure <https://gitlab.ilabt.imec.be/dyversify/dyversify-kmeans-anomalydetector/ns/anomaly-detector/1> ;
+    ns3:wasOriginatedBy <http://example.com/stimulus/cosmaira.module0/spm%3A%3Anumber/12/13> ;
+    ns6:update "false" ;
+    ns4:metricId "spm::number" ;
+    ns4:thingId "cosmaira.module0" .
+
+<http://dyversify-stack.idlab.be/scopes/icon.dyversify.televic/things/cosmaira.module0/metrics/spm%3A%3Anumber> ns1:isObservedBy <http://dyversify-stack.idlab.be/scopes/icon.dyversify.televic/things/cosmaira.module0> .
+
+<http://dyversify-stack.idlab.be/scopes/icon.dyversify.televic/things/cosmaira.module0/metrics/spm%3A%3Anumber/observations/12> ns1:resultTime "12"^^xsd:dateTime .
+
+<http://dyversify-stack.idlab.be/scopes/icon.dyversify.televic/things/cosmaira.module0/metrics/spm%3A%3Anumber/observations/13> ns1:resultTime "13"^^xsd:dateTime .
+
+<http://example.com/procedure_bn/1970-01-01T00%3A00%3A00.000012%2B00%3A00> rdfs:label "KMeans" .
+
+<http://example.com/stimulus/cosmaira.module0/spm%3A%3Anumber/12/13> a ns3:Stimulus ;
+    ns2:fromObservation <http://dyversify-stack.idlab.be/scopes/icon.dyversify.televic/things/cosmaira.module0/metrics/spm%3A%3Anumber/observations/12> ;
+    ns2:observedProperty <http://dyversify-stack.idlab.be/scopes/icon.dyversify.televic/things/cosmaira.module0/metrics/spm%3A%3Anumber> ;
+    ns2:toObservation <http://dyversify-stack.idlab.be/scopes/icon.dyversify.televic/things/cosmaira.module0/metrics/spm%3A%3Anumber/observations/13> .
+
+<https://gitlab.ilabt.imec.be/dyversify/dyversify-kmeans-anomalydetector/ns/anomaly-detector/1> a ns1:Procedure ;
+    ns7:specializationOf <http://example.com/procedure_bn/1970-01-01T00%3A00%3A00.000012%2B00%3A00> .

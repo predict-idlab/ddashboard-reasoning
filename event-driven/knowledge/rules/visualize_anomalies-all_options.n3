@@ -1,0 +1,104 @@
+@prefix folio: <http://IBCNServices.github.io/Folio-Ontology/Folio.owl#> .
+@prefix ssn: <http://www.w3.org/ns/ssn/> .
+@prefix dashb: <http://dynamicdashboard.ilabt.imec.be/broker/ontologies/dashboard#> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Visualize information about the anomaly itself:
+
+{
+    ?tab dashb:investigatedAnomaly ?anomaly .
+    ?anomaly a folio:Anomaly ;
+        dcterms:description ?anomalyDescription .
+    ?anomalyVisualization a dashb:AnomalyVisualization .
+}
+=>
+{
+    ?tab dashb:widget [
+        a dashb:Widget ;
+        dashb:widgetName ?anomalyDescription ;
+        dashb:visualization ?anomalyVisualization ;
+        dashb:dataSource ?anomaly
+    ] .
+} .
+
+# Visualize information about the child anomalies of the anomaly:
+
+{
+    ?tab dashb:investigatedAnomaly ?anomaly .
+    ?anomaly a folio:MergedAnomaly ;
+        folio:hasSubAnomaly ?subAnomaly .
+    ?subAnomaly dcterms:description ?subAnomalyDescription .
+    ?anomalyVisualization a dashb:AnomalyVisualization .
+}
+=>
+{
+    ?tab dashb:widget [
+        a dashb:Widget ;
+        dashb:widgetName ?subAnomalyDescription ;
+        dashb:visualization ?anomalyVisualization ;
+        dashb:dataSource ?subAnomaly
+    ] .
+} .
+
+# Visualize historical data for the sensor properties of the anomaly: (by presenting these sensor properties and a time window to visualizations.n3)
+
+{
+    ?tab dashb:investigatedAnomaly ?anomaly .
+    ?anomaly a folio:Anomaly ;
+        ssn:wasOriginatedBy ?abnormalPattern .
+    ?abnormalPattern folio:observedProperty ?sensorProperty .
+    ?sensorProperty rdfs:label ?sensorPropertyName .
+}
+=>
+{
+    ?tab dashb:widget [
+        a dashb:Widget ;
+        dashb:widgetName ?sensorPropertyName ;
+        dashb:dataSource ?sensorProperty ;
+        dashb:timeWindow [
+            a time:Interval
+        ]
+    ] .
+} .
+
+# Visualize historical data for the sensor properties of the child anomalies: (by presenting these sensor properties and a time window to visualizations.n3)
+
+{
+    ?tab dashb:investigatedAnomaly ?anomaly .
+    ?anomaly a folio:MergedAnomaly ;
+        folio:hasSubAnomaly ?subAnomaly .
+    ?subAnomaly ssn:wasOriginatedBy ?abnormalPattern .
+    ?abnormalPattern folio:observedProperty ?sensorProperty .
+    ?sensorProperty rdfs:label ?sensorPropertyName .
+}
+=>
+{
+    ?tab dashb:widget [
+        a dashb:Widget ;
+        dashb:widgetName ?sensorPropertyName ;
+        dashb:dataSource ?sensorProperty ;
+        dashb:timeWindow [
+            a time:Interval
+        ]
+    ] .
+} .
+
+# For the sensor properties visualizations (the last 2 cases), visualizations.n3 will reason about an appropriate visualization
+# and assign candidate visualiations (dashb:candidateVisualization) to the widget.
+# Then, contrary to user-driven dashboarding, the dashboard user is not asked to select one of the candidate visualizations,
+# anomaly-driven dashboarding will create as much visualizations for the given input as available.
+# We hereby assume that the available anomaly and historical sensor property visualizations all provide added value (displaying
+# the input in a different way, but every time in another, interesting perspective.
+# If this would not be the case in the future, we may consider fusing this approach with machine learning-based recommender engines (future work).
+
+{
+    ?tab dashb:investigatedAnomaly ?anomaly ;
+        dashb:widget ?widget .
+    ?widget dashb:candidateVisualization ?visualization .
+}
+=>
+{
+    ?widget dashb:visualization ?visualization .
+} .
