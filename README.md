@@ -9,4 +9,4 @@ S. Vanden Hautte, P. Moens, J. Van Herwegen, D. De Paepe, B. Steenwinckel, S. Ve
 
 - event-driven, as discussed in:
 
-S. Vanden Hautte, D. De Paepe, B. Steenwinckel, P. Moens, S. Verstichel, S. Vandekerckhove, F. Ongenae and S. Van Hoecke, “Event-driven dashboarding and feedback capturing for improved anomaly and fault detection and reduced human labeling effort”, Decision Support Systems (submitted).
+S. Vanden Hautte, D. De Paepe, B. Steenwinckel, P. Moens, B. Steenwinckel, S. Verstichel, S. Vandekerckhove, F. Ongenae and S. Van Hoecke, “Event-driven dashboarding and feedback capturing for improved event detection and reduced human labeling effort”, Engineering Applications of Artificial Intelligence (submitted).
