@@ -7,7 +7,7 @@ S. Vanden Hautte, D. De Paepe, B. Steenwinckel, P. Moens, B. Steenwinckel, S. Ve
 
 # Demo movie
 
-A demo movie is provided at [https://www.youtube.com/watch?v=r7ygntYFLxo].
+A demo movie is provided at https://www.youtube.com/watch?v=r7ygntYFLxo.
 
 # Running the semantic reasoning for anomaly investigation dashboard creation
 
