@@ -1,6 +1,7 @@
 import logging
 import urllib.parse
 from abc import ABC, abstractmethod
+
 import requests
 
 from command_execution_helper import execute_command
