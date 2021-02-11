@@ -148,19 +148,26 @@
 }.
 
 # Finally, if all criteria above have been met, mark the visualization as a worthy candidate for the widget.
+# Note: There is a check to see whether or not the visualization component has the right amount of matched dataSources.
 {
     ?widget dashb:dataSource ?dataSource ;
-        # dashb:timeWindow ?window ;
         dashb:consideredVisualizationComposition ?composition .
 
     ?composition dashb:visualization ?visualization .
     ?composition dashb:component ?component .
 
-    ?component dashb:supports ?dataSource .
+    ?component dashb:supports ?dataSource ;
+        dashb:min ?min ;
+        dashb:max ?max .
 
-    #?visualization dashb:source ?dataSource .
+    [] e:findall ( ?s { ?widget dashb:dataSource ?s } ?dataSources) .
+    ?dataSources math:memberCount ?length.
+
+    ?length math:notLessThan ?min.
+    ?length math:notGreaterThan ?max.
 }
 =>
 {
     ?widget dashb:candidateVisualization ?visualization .
 }.
+
